@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'auth_clicker',
     'backend',
     'frontend',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
