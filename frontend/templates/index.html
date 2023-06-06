@@ -4,30 +4,48 @@
     <title>Лучший кликер на планете</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        .cube:active {
+        width: 160px;
+        height: 160px;
+    }</style>
 </head>
-<body>
+<body style="background-size: cover" background="../static/media/font2.jpg">
     <main class="app">
-        <nav class="nav">
-            Привет, {{ user.username }}
-            <a href="{% url 'logout' %}">Выйти</a>
+        <nav class="nav" style="display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-end;
+  text-align: left;">
+            <li style=" display: inline-block; position: relative;"><img src="../static/media/ach.png" width="255px" height="55px" alt=""><p style=" display: inline-block; position: absolute; top: -6px; left: 55px; color: white; ">Привет, {{ user.username }}!</p>
+            <a style=" display: inline-block; position: absolute; top: 27px; left: 55px; " href="{% url 'logout' %}">Выйти</a></li>
         </nav>
+        <div id='coins' style="  display: flex; flex-direction: column; text-align: center; font-size: 20px; font-family: 'Press Start 2P', cursive;">{{core.coins}}</div>
 
-        <div class="container">
-            <div id='coins'>{{core.coins}}</div>
-            <button onclick="call_click()">Нажми меня</button>
-            <p>
-                Невероятная мощь клика: <span id="click_power">{{ core.click_power }}</span>
+        <div id="conte" style="  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 50vh;">
+            <img class="cube" src="../static/media/block2.png" onclick="call_click()" width=”150px” height="150px">
+            <p class="cont" style="font-size: 20px; font-family: 'Press Start 2P', cursive;">
+                Сила клика: <span id="click_power">{{ core.click_power }}</span>
             </p>
         </div>
 
         <aside class="boosts" id="boosts">
-            <h3>Бусты</h3>
+            <h3 style="font-family: 'Press Start 2P', cursive;">Бусты:</h3>
             <div class="boosts-holder" id="boosts-holder">
                 {% for boost in boosts %}
-                    <button class="boost" id="boost_{{boost.id}}" onclick="buy_boost({{boost.id}})">
-                        <p>lvl: <span id="boost_level">{{boost.level}}</span></p>
-                        <p>+<span id="boost_power">{{boost.power}}</span></p>
-                        <p><span id="boost_price">{{boost.price}}</span></p>
+                    <button style="background: #0f0f0f; border: 1px solid white"  class="boost" id="boost_{{boost.id}}" onclick="buy_boost({{boost.id}})">
+                        <img src="../static/media/card.jpg" width=”80px” height="80px">
+                        <p style="color: white">lvl: <span id="boost_level">{{boost.level}}</span></p>
+                        <p style="color: white">+<span id="boost_power">{{boost.power}}</span></p>
+                        <p style="color: white"><span id="boost_price">{{boost.price}}</span></p>
                     </button>
                 {% endfor %}
             </div>
