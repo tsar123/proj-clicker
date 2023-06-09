@@ -47,7 +47,10 @@ class LoginView(APIView):
             login(request, user)
             return redirect('index')
         else:
-            return render(request, 'login.html', {'invalid': False})
+            return render(request, 'login.html', {'invalid': True})
+
+    def get(self, request):
+        return render(request, 'login.html', {'invalid': False})
 
 
 def user_logout(request):
@@ -75,3 +78,7 @@ class RegistrationView(APIView):
         else:
             form = UserForm()
             return render(request, 'registration.html', {'invalid': False, 'form': form})
+
+    def get(self, request):
+        form = UserForm(request.POST)
+        return render(request, 'registration.html', {'invalid': False, 'form': form})
